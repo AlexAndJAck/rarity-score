@@ -1,3 +1,4 @@
+import axios from "axios";
 import { json2query } from ".";
 import { config } from "../config";
 
@@ -6,12 +7,14 @@ let basePath =
     ? `http://${config.LOCAL_API_URL}`
     : `https://${config.API_URL}`;
 
-console.log(basePath);
-
 export const getNFT = async (id) => {
-  const res = await fetch(`${basePath}/api/nft?id=${id}`);
-  const data = await res.json();
-  return data;
+  try {
+    const { data } = await axios.get(`${basePath}/api/nft?id=${id}`);
+  //  console.log("hum", { data });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getNFTs = async (query) => {
@@ -28,7 +31,7 @@ export const getFilters = async (query) => {
 
 export const getNFTInfo = async (id) => {
   const res = await fetch(
-    `https://api.opensea.io/api/v1/assets?collection=${config.COLLECTION_NAME.toLowerCase()}&token_ids=${id}&format=json`
+    `https://ipfs.io/ipfs/QmaJgGTdzjWr57yzSYQU5LEByZwiDWbTEXXvjVXyfbx5Nr/${id}.json`
   );
   const data = await res.json();
   return data;

@@ -57,7 +57,7 @@ yarn install
 
 3. Change `config/index.js`:
   - `env` : If you're using locally set it to `local`, while deploying set it to `prod`.
-  - `LOCAL_API_URL`: Port at which app is running locally. Default value of `http://localhost:3000`
+  - `LOCAL_API_URL`: Port at which app is running locally. Default value of `http://localhost:1004`
   - `API_URL`: Your vercel URL (when you deploy)
   - `COLLECTION_NAME`: Opensea collection name "OneDayPunks" is an example
   - `COLLECTION_TITLE`: This is for the website title (for SEO)

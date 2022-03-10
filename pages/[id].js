@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import { config } from "../config";
 import { Footer } from "../components/Footer";
+import data from '../data/collection.json'
 
 const Trait = (attribute) => {
   return (
@@ -30,7 +31,10 @@ const Trait = (attribute) => {
 function NFT({ nft, title }) {
   const router = useRouter();
 
-  const img_url = `https://ipfs.io/ipfs/${ipfs2http(nft.image)}`;
+  const img_url = `https://ipfs.io/ipfs/${nft.thumbnailUri.replace(
+    "ipfs://",
+    ""
+  )}`;
 
   return (
     <>
@@ -74,24 +78,19 @@ function NFT({ nft, title }) {
                 className="absolute top-5 right-5
               text-white px-2 py-2 font-medium text-xs rounded-md bg-yellow-100 text-yellow-600"
               >
-                #{nft.rarity_rank + 1}
+                Rank #{nft.rarity_rank + 1}
               </span>
             </div>
             <div className="py-4 px-2 w-full rounded-md text-lg mt-4 bg-red-100 text-red-500">
-              ♦️ {nft.rarity_score.toFixed(2)}
+              ♦️ Score:{nft.rarity_score?.toFixed(2)}
             </div>
-            {nft.current_price !== "-" && (
-              <div className="py-4 px-2 w-full rounded-md text-lg mt-4 bg-green-100 text-green-500">
-                <span>{`Ξ ${formatPrice(nft?.current_price)}`}</span>
-              </div>
-            )}
 
             <a
               className="py-4 px-2 flex text-center w-full items-center justify-center mt-4 bg-blue-100 text-blue-500"
-              href={nft?.opensea_link}
+              href={`https://objkt.com/asset/houseofskratz/${nft.id}`}
               target="_blank"
             >
-              🛒 Opensea
+              See on OBJKT
             </a>
             <div className="py-4 flex flex-col items-start justify-start">
               {/* <h2 className="px-2 text-xl mb-2 font-bold text-gray-800">Traits</h2> */}
@@ -112,15 +111,9 @@ function NFT({ nft, title }) {
 }
 
 NFT.getInitialProps = async ({ query }) => {
+  console.log(query.id)
   let nft = await getNFT(query.id);
-  let opensea_info = await getNFTInfo(query.id);
-  nft["opensea_link"] = opensea_info["assets"][0]["permalink"];
-  nft["current_price"] = "-";
-  if (opensea_info["assets"][0]["sell_orders"])
-    nft["current_price"] =
-      opensea_info["assets"][0]["sell_orders"][0]["current_price"]; //last price
-  if (nft) return { nft, title: config.COLLECTION_TITLE };
-  else return { nft: {}, title: config.COLLECTION_TITLE };
+  return { nft, title: config.COLLECTION_TITLE };
 };
 
 export default NFT;

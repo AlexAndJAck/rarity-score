@@ -1,9 +1,9 @@
 export const config = {
-  env: "prod",
-  LOCAL_API_URL: "localhost:3000",
-  API_URL: "odp-rarity.vercel.app",
-  COLLECTION_NAME: "OneDayPunks",
-  COLLECTION_TITLE: "One Day Punks",
-  COLLECTION_DESCRIPTION: '10k "One Day I\'ll Be A Punk"-punks.',
-  COLLECTION_IMG_LINK: "https://punkscape.xyz/og.png",
+  env: "local",
+  LOCAL_API_URL: "localhost:1004",
+  API_URL: "localhost:1004",
+  COLLECTION_NAME: "House of Skratz",
+  COLLECTION_TITLE: "House of Skratz",
+  COLLECTION_DESCRIPTION: '',
+  COLLECTION_IMG_LINK: "https://pbs.twimg.com/profile_images/1460282903393300480/A4den89y_400x400.jpg",
 };

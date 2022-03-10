@@ -1,13 +1,17 @@
 {
   "private": true,
+  "homepage": "./",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 1004",
     "build": "next build",
     "start": "next start",
     "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "ciql-json": "^1.9.6",
     "html2canvas": "^1.3.2",
+    "lodash": "^4.17.21",
     "next": "latest",
     "next-seo": "^4.27.0",
     "react": "^17.0.2",
