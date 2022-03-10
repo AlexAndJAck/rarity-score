@@ -1,7 +1,7 @@
 export const config = {
   env: "local",
   LOCAL_API_URL: "localhost:1004",
-  API_URL: "rarity-score-bcxotza6e-skratz.vercel.app",
+  API_URL: "rarity-score-zeta.vercel.app",
   COLLECTION_NAME: "House of Skratz",
   COLLECTION_TITLE: "House of Skratz",
   COLLECTION_DESCRIPTION: '',
