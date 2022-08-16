@@ -4,13 +4,13 @@ import { config } from "../config";
 
 let basePath =
   config.env == "local"
-    ? `https://${config.LOCAL_API_URL}`
+    ? `http://${config.LOCAL_API_URL}`
     : `https://${config.API_URL}`;
 
 export const getNFT = async (id) => {
   try {
     const { data } = await axios.get(`${basePath}/api/nft?id=${id}`);
-  //  console.log("hum", { data });
+    //  console.log("hum", { data });
     return data;
   } catch (e) {
     console.log(e);
